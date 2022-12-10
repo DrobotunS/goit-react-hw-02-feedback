@@ -1,23 +1,22 @@
 .list {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 15px;
-  }
-  .button {
-    background: inherit;
-    padding: 3px 5px;
-    display: inline-block;
-    cursor: pointer;
-    border: solid 1px;
-    border-radius: 5px;
-    box-shadow: 0 1px #999;
-    transition: background 0.25s, color 0.25s;
-  } 
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+.button {
+  background: inherit;
+  padding: 3px 5px;
+  display: inline-block;
+  cursor: pointer;
+  border: solid 1px;
+  border-radius: 5px;
+  box-shadow: 0 1px #999;
+  transition: background 0.25s, color 0.25s;
+}
 
-  .button:active {
-    color: #ffffff;
-    background: blue;
-    transform: translateY(1px);
-  }
-  
+.button:active {
+  color: #ffffff;
+  background: blue;
+  transform: translateY(1px);
+}
