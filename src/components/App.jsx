@@ -10,21 +10,29 @@ class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  handleClickButtonGood = evt => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-  handleClickButtonNeutral = evt => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-  handleClickButtonBad = evt => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
-  };
+
+  handleClickButton = evt => {
+  const option = evt.target.name;
+  if (option) {
+    this.setState(prevState => ({ [option]: prevState[option] + 1 }));
+  }
+}
+
+  // handleClickButtonGood = evt => {
+  //   this.setState(prevState => ({
+  //     good: prevState.good + 1,
+  //   }));
+  // };
+  // handleClickButtonNeutral = evt => {
+  //   this.setState(prevState => ({
+  //     neutral: prevState.neutral + 1,
+  //   }));
+  // };
+  // handleClickButtonBad = evt => {
+  //   this.setState(prevState => ({
+  //     bad: prevState.bad + 1,
+  //   }));
+  // };
 
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
@@ -33,27 +41,21 @@ class App extends Component {
   countPositiveFeedback = () => {
     const totalFeedback = this.countTotalFeedback();
     const goodFeedback = this.state.good;
-    let result = 0;
-    if (totalFeedback !== 0) {
-      result = Math.ceil((goodFeedback / totalFeedback) * 100);
-    }
-    return `${result}`;
+    return  Math.ceil((goodFeedback / totalFeedback) * 100) || 0;
+    
   };
   render() {
     const { good, neutral, bad } = this.state;
     const countTotalFeedback = this.countTotalFeedback();
     const countPositiveFeedbackPercentage = this.countPositiveFeedback();
-    const onHandleClickButtonGood = this.handleClickButtonGood;
-    const onHandleClickButtonNeutral = this.handleClickButtonNeutral;
-    const onHandleClickButtonBad = this.handleClickButtonBad;
-
+    const options = Object.keys(this.state);
+    const handleClickButton = this.handleClickButton;
     return (
       <div>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            FeedbackHandleClickButtonGood={onHandleClickButtonGood}
-            FeedbackHandleClickButtonNeutral={onHandleClickButtonNeutral}
-            FeedbackHandleClickButtonBad={onHandleClickButtonBad}
+            options={options}
+            onLeaveFeedback={handleClickButton}
           />
           <div title="Statistics">
             {countTotalFeedback > 0 ? (
